@@ -32,3 +32,5 @@ node_modules
 target
 bundle.js
 bundle.js.map
+package-lock.json
+
