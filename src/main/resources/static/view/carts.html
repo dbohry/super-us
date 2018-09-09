@@ -1,7 +1,16 @@
-<ul class="list-group">
+<ul class="list-group" ng-if="id == null">
     <li class="list-group-item d-flex justify-content-between align-items-center"
         ng-repeat="cart in carts">
-        {{cart.date}}
-        <span class="badge badge-primary badge-pill" title="How many itens in your list">{{cart.products.length}}</span>
+        <a href="#!/carts/{{cart.id}}">{{cart.date}} | {{cart.id}}</a>
+        <span class="badge badge-primary badge-pill"
+              title="How many itens in your list">{{cart.products.length}}</span>
+    </li>
+</ul>
+
+<ul class="list-group" ng-if="id != null">
+    <li class="list-group-item d-flex justify-content-between align-items-center"
+        ng-repeat="product in cart.products">
+        {{product.name}}
+        <span class="badge badge-primary badge-pill">{{product.quantity}}</span>
     </li>
 </ul>

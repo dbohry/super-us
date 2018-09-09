@@ -10,4 +10,8 @@ app.config(function ($routeProvider) {
             templateUrl: "view/carts.html",
             controller : "cartCtrl"
         })
+        .when("/carts/:id", {
+            templateUrl: "view/carts.html",
+            controller : "cartCtrl"
+        })
 });
