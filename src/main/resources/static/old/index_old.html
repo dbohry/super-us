@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Supermarket List</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
+    <base href="/"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div>
+        <h2>Listas de compra:</h2>
+        <ul id="my-lists" class="list-group">
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var lists = $.get("/api/carts", function (data) {
+        $.each(data, function (i, myList) {
+            $("#my-lists").append(
+                '<a href=' + myList.id + '"cart.html?id="><li class="list-group-item d-flex justify-content-between align-items-center">' + myList.date +
+                '<span class="badge badge-primary badge-pill">' + myList.id + '</span>' +
+                '<span class="badge badge-info">' + myList.products.length + '</span></li></a>');
+        });
+    });
+</script>
+
+</body>
+</html>
