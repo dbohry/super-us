@@ -1,16 +1,37 @@
-<ul class="list-group" ng-if="id == null">
-    <li class="list-group-item d-flex justify-content-between align-items-center"
-        ng-repeat="cart in carts">
-        <a href="#!/carts/{{cart.id}}">{{cart.date}} | {{cart.id}}</a>
-        <span class="badge badge-primary badge-pill"
-              title="How many itens in your list">{{cart.products.length}}</span>
-    </li>
-</ul>
+<div ng-if="id == null">
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+            ng-repeat="cart in carts">
+            <a href="#!/{{cart.id}}">{{cart.date}} | {{cart.id}}</a>
+            <span class="badge badge-primary badge-pill"
+                  title="How many itens in your list">{{cart.products.length}}</span>
+        </li>
+    </ul>
+</div>
 
-<ul class="list-group" ng-if="id != null">
-    <li class="list-group-item d-flex justify-content-between align-items-center"
-        ng-repeat="product in cart.products">
-        {{product.name}}
-        <span class="badge badge-primary badge-pill">{{product.quantity}}</span>
-    </li>
-</ul>
+<div ng-if="id != null">
+    <div><a href="/" class="btn btn-dark">Back</a></div>
+
+    <div ng-show="showForm">
+        <form>
+            <div class="form-group">
+                <label for="inputName">Name</label>
+                <input ng-model="product.name" type="text" class="form-control" id="inputName" placeholder="Product name">
+            </div>
+            <div class="form-group">
+                <label for="inputQuantity">Quantity</label>
+                <input ng-model="product.quantity" type="number" class="form-control" id="inputQuantity" placeholder="Quantity">
+            </div>
+        </form>
+    </div>
+
+    <button type="button" class="btn btn-success" ng-click="showForm = true" ng-show="!showForm">Add an Item</button>
+    <button type="button" class="btn btn-primary" ng-click="add(); showForm = false" ng-show="showForm">Save</button>
+    <button type="button" class="btn btn-danger" ng-click="cancel()" ng-show="showForm">Cancel</button>
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+            ng-repeat="product in cart.products">{{product.name}}
+            <span class="badge badge-primary badge-pill">{{product.quantity}}</span>
+        </li>
+    </ul>
+</div>
